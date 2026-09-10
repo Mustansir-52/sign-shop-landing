@@ -433,11 +433,11 @@ section[id] {
         grid-template-columns: 1fr 1.1fr;
         align-items: start;
     }
-}
 
-.flag__image {
-    position: sticky;
-    top: 100px;  /* below the sticky header */
+    .flag__image {
+        position: sticky;
+        top: 100px;  /* below the sticky header */
+    }
 }
 
 .plate--flagship {
