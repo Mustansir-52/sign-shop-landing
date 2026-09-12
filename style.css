@@ -391,19 +391,20 @@ section[id] {
 .hero-collage {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: start;
     gap: 10px;
-    background: #F4F5F1;
-    border: 1px solid var(--rule);
-    border-radius: 16px;
-    padding: 10px;
     position: relative;
-    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.06);
 }
 
 .hero-collage__col {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background: #F4F5F1;
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.06);
 }
 
 .hero-collage__item {
@@ -457,12 +458,12 @@ section[id] {
 @media (min-width: 640px) {
     .hero-collage {
         gap: 14px;
-        padding: 14px;
-        border-radius: 20px;
     }
 
     .hero-collage__col {
         gap: 14px;
+        padding: 14px;
+        border-radius: 20px;
     }
 
     .hero-collage__item {
