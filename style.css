@@ -18,6 +18,8 @@
     --sp: clamp(64px, 9vw, 124px);
     --font: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
+    --maxw: 1200px;
+
 }
 
 /* ---------- reset ---------- */
