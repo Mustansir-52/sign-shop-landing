@@ -17,6 +17,7 @@
     --gut: clamp(20px, 5vw, 64px);
     --sp: clamp(64px, 9vw, 124px);
     --font: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
 }
 
 /* ---------- reset ---------- */
@@ -88,17 +89,19 @@ section[id] {
 
 /* ---------- type scale ---------- */
 .t-display {
+    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 6.4vw, 4.75rem);
-    line-height: 1.0;
-    letter-spacing: -0.038em;
-    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-weight: 400;
 }
 
 .t-h2 {
+    font-family: var(--font-serif);
     font-size: clamp(1.7rem, 3.4vw, 2.6rem);
-    line-height: 1.1;
-    letter-spacing: -0.028em;
-    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    font-weight: 400;
 }
 
 .t-h3 {
@@ -280,7 +283,7 @@ section[id] {
    ============================================================ */
 .hero__grid {
     display: grid;
-    gap: clamp(32px, 5vw, 64px);
+    gap: clamp(28px, 5vw, 64px);
     padding-block: clamp(52px, 7vw, 88px);
 }
 
@@ -303,45 +306,195 @@ section[id] {
     align-items: center;
 }
 
-.hero__note {
-    margin-top: 20px;
+.hero__checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin-top: 22px;
+    list-style: none;
+    padding: 0;
 }
 
-/* drawing title block under the hero image */
-.titleblock {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border: 1px solid var(--rule);
-    border-top: 0;
-    border-radius: 0 0 2px 2px;
-}
-
-@media (min-width: 620px) {
-    .titleblock {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
-
-.titleblock div {
-    padding: 12px 14px;
-    border-right: 1px solid var(--rule);
-}
-
-.titleblock div:last-child {
-    border-right: 0;
-}
-
-.titleblock dt {
-    font-size: 0.75rem;
+.hero__checks li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
     color: var(--muted);
-    margin-bottom: 3px;
+    white-space: nowrap;
 }
 
-.titleblock dd {
-    margin: 0;
+.hero__checks svg {
+    flex: none;
+    color: var(--muted);
+}
+
+/* ---------- trust pill ---------- */
+.trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding: 8px 18px 8px 14px;
+    border: 1.5px solid var(--rule);
+    border-radius: 999px;
+    background: var(--paper);
+    flex-wrap: wrap;
+}
+
+.trust-pill__g {
+    flex: none;
+}
+
+.trust-pill__stars {
+    display: flex;
+    gap: 1px;
+    align-items: center;
+    flex: none;
+}
+
+.trust-pill__text {
     font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+.trust-pill__avatars {
+    display: flex;
+    flex: none;
+}
+
+.trust-pill__av {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--paper);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-left: -6px;
+}
+
+.trust-pill__av:first-child {
+    margin-left: 0;
+}
+/* ---------- hero marquee ---------- */
+/* MOBILE-FIRST: horizontal scroll strip */
+.hero-marquee {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    /* fade edges so images don't end abruptly */
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 6%,
+        black 94%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 6%,
+        black 94%,
+        transparent 100%
+    );
+}
+
+.hero-marquee__track {
+    display: flex;
+    gap: 14px;
+    animation: marquee-h 40s linear infinite;
+    width: max-content;
+}
+
+.hero-marquee__slide {
+    position: relative;
+    flex: none;
+    width: 70vw;
+    max-width: 300px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+}
+
+.hero-marquee__slide img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: 50% 35%;
+    display: block;
+}
+
+.hero-marquee__label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 14px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+    color: #fff;
+    font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: -0.01em;
+    pointer-events: none;
+}
+
+/* pause on hover/touch for usability */
+.hero-marquee:hover .hero-marquee__track,
+.hero-marquee:focus-within .hero-marquee__track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-h {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* DESKTOP (≥ 1000px): vertical scroll in right column */
+@media (min-width: 1000px) {
+    .hero-marquee {
+        height: clamp(500px, 60vh, 680px);
+        border-radius: 6px;
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 5%,
+            black 95%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 5%,
+            black 95%,
+            transparent 100%
+        );
+    }
+
+    .hero-marquee__track {
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+        animation: marquee-v 45s linear infinite;
+    }
+
+    .hero-marquee__slide {
+        width: 100%;
+        max-width: none;
+    }
+
+    @keyframes marquee-v {
+        0%   { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+    }
 }
 
 /* systems row — capabilities folded into the hero */
